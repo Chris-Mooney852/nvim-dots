@@ -6,6 +6,7 @@ require('custom-keys')
 require('file-explorer')
 require('syntax-hilight')
 require('statline')
+require('lsp-settings')
 
 vim.cmd[[colorscheme dracula]]
 
@@ -13,3 +14,8 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
+
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+vim.wo.number = true

@@ -6,6 +6,8 @@ vim.opt.completeopt = {'menuone', 'noselect', 'noinsert', 'preview'}
 -- shortmess is used to avoid excessive messages
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
 
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local handlers = require('nvim-autopairs.completion.handlers')
 local cmp = require'cmp'
 cmp.setup({ 
 
@@ -25,8 +27,8 @@ cmp.setup({
     -- CR (enter or return) to CONFIRM the currently selection suggestion
     -- We set the ConfirmBehavior to insert the Selected suggestion
     ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
+      behavior = cmp.ConfirmBehavior.Replace, -- Original = Insert
+      select = false, -- Original = true
     })
   },
   window = {
@@ -36,13 +38,13 @@ cmp.setup({
 
   -- sources are the installed sources that can be used for code suggestions
   sources = {
-    { name = "copilot", group_index = 2 },
+    { name = "copilot", keyword_length = 1 },
+    { name = "LuaSnip", keyword_length = 2 },
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help'}, 
     { name = 'nvim_lua', keyword_length = 2},
     { name = 'buffer', keyword_length = 2 },
-    { name = 'vsnip', keyword_length = 2 },
   },
 
   -- add formating of the different sources
@@ -51,7 +53,6 @@ cmp.setup({
     format = function(entry, item)
       local menu_icon ={
         nvim_lsp = 'λ',
-        vsnip = '⋗',
         buffer = 'b',
         path = 'p',
         copilot = 'c',
@@ -61,3 +62,39 @@ cmp.setup({
     end,
   },
 })
+
+cmp.event:on(
+'confirm_done',
+cmp_autopairs.on_confirm_done({
+  filetypes = {
+    -- "*" is a alias to all filetypes
+    ["*"] = {
+      ["("] = {
+        kind = {
+          cmp.lsp.CompletionItemKind.Function,
+          cmp.lsp.CompletionItemKind.Method,
+        },
+        handler = handlers["*"]
+      }
+    },
+    lua = {
+      ["("] = {
+        kind = {
+          cmp.lsp.CompletionItemKind.Function,
+          cmp.lsp.CompletionItemKind.Method
+        },
+        ---@param char string
+        ---@param item table item completion
+        ---@param bufnr number buffer number
+        ---@param rules table
+        ---@param commit_character table<string>
+        handler = function(char, item, bufnr, rules, commit_character)
+          -- Your handler function. Inpect with print(vim.inspect{char, item, bufnr, rules, commit_character})
+        end
+      }
+    },
+    -- Disable for tex
+    tex = false
+  }
+})
+)
