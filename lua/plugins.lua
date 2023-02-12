@@ -19,6 +19,21 @@ return require('packer').startup(function()
   use 'wakatime/vim-wakatime'
   use 'f-person/git-blame.nvim'
   use 'lukas-reineke/lsp-format.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'kdheepak/lazygit.nvim'
+  -- Lua
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
   use {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -105,23 +120,53 @@ return require('packer').startup(function()
     end
   }
   use {
-    'vimwiki/vimwiki',
+    'nvim-orgmode/orgmode',
     config = function()
-      vim.g.vimwiki_list = {
-        {
-          path = '~/vimwiki',
-          syntax = 'markdown',
-          ext = '.md',
-        }
+      require('orgmode').setup{
+        org_agenda_files = {'~/org/**/*'},
+        org_default_notes_file = '~/org/refile.org',
       }
     end
   }
   use {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    tag = "v<CurrentMajor>.*",
-    -- install jsregexp (optional!:).
-    run = "make install_jsregexp"
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        -- Open request results in a horizontal split
+        result_split_horizontal = false,
+        -- Keep the http file buffer above|left when split horizontal|vertical
+        result_split_in_place = false,
+        -- Skip SSL verification, useful for unknown certificates
+        skip_ssl_verification = false,
+        -- Encode URL before making request
+        encode_url = true,
+        -- Highlight request on run
+        highlight = {
+          enabled = true,
+          timeout = 150,
+        },
+        result = {
+          -- toggle showing URL, HTTP info, headers at top the of result window
+          show_url = true,
+          show_http_info = true,
+          show_headers = true,
+          -- executables or functions for formatting response body [optional]
+          -- set them to false if you want to disable them
+          formatters = {
+            json = "jq",
+            html = function(body)
+              return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+            end
+          },
+        },
+        -- Jump to request line on run
+        jump_to_request = false,
+        env_file = '.env',
+        custom_dynamic_variables = {},
+        yank_dry_run = true,
+      })
+    end
   }
   use {
     'glepnir/dashboard-nvim',
@@ -168,17 +213,9 @@ return require('packer').startup(function()
             },
             {
               icon = ' ',
-              desc = 'Wiki Index           ',
-              key = 'w',
-              keymap = 'SPC w w',
-              action = 'VimwikiIndex'
-            },
-            {
-              icon = ' ',
-              desc = 'Meeting Notes           ',
-              key = 'i',
-              keymap = 'SPC w i',
-              action = 'VimwikiDiaryIndex'
+              desc = 'agenda           ',
+              key = 'a',
+              keymap = 'SPC o a',
             },
             {
               icon = ' ',

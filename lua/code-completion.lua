@@ -39,7 +39,6 @@ cmp.setup({
   -- sources are the installed sources that can be used for code suggestions
   sources = {
     { name = "copilot", keyword_length = 1 },
-    { name = "LuaSnip", keyword_length = 2 },
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help'}, 

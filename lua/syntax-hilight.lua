@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "go", "lua", "rust" },
+  ensure_installed = { "go", "lua", "rust", "http", "json", "org" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -15,3 +15,5 @@ require'nvim-treesitter.configs'.setup {
 
   },
 }
+-- Load custom treesitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
