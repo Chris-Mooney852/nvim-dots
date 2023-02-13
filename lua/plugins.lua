@@ -7,11 +7,9 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-  use 'hrsh7th/nvim-cmp' 
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-vsnip'                             
   use 'hrsh7th/cmp-path'                              
   use 'hrsh7th/cmp-buffer'                            
   use 'Mofiqul/dracula.nvim'
@@ -21,6 +19,7 @@ return require('packer').startup(function()
   use 'lukas-reineke/lsp-format.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'kdheepak/lazygit.nvim'
+  use "rafamadriz/friendly-snippets"
   -- Lua
   use {
     "folke/which-key.nvim",
@@ -28,6 +27,20 @@ return require('packer').startup(function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
       require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  -- Lua
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
@@ -209,7 +222,14 @@ return require('packer').startup(function()
               desc = 'Find Text           ',
               key = 't',
               keymap = 'SPC f g',
-              action = 'Telescope grep_string'
+              action = 'Telescope live_grep'
+            },
+            {
+              icon = ' ',
+              desc = 'Find Project           ',
+              key = 'p',
+              keymap = 'SPC f p',
+              action = 'Telescope projects'
             },
             {
               icon = ' ',

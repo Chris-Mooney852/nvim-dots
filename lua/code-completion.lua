@@ -6,10 +6,18 @@ vim.opt.completeopt = {'menuone', 'noselect', 'noinsert', 'preview'}
 -- shortmess is used to avoid excessive messages
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local handlers = require('nvim-autopairs.completion.handlers')
 local cmp = require'cmp'
 cmp.setup({ 
+
+  snippet = {
+    expand = function(args)
+      require'luasnip'.lsp_expand(args.body)
+    end
+  },
 
   mapping = {
     -- Shift+TAB to go to the Previous Suggested item
@@ -40,6 +48,7 @@ cmp.setup({
   sources = {
     { name = "copilot", keyword_length = 1 },
     { name = 'path' },
+    { name = 'luasnip' },
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help'}, 
     { name = 'nvim_lua', keyword_length = 2},

@@ -9,6 +9,7 @@ wk.register({
   ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', 'Grep' },
   ['<leader>fb'] = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', 'Find in Buffer' },
   ['<leader>fh'] = { '<cmd>Telescope help_tags<CR>', 'Help' },
+  ['<leader>fp'] = { '<cmd>Telescope projects<CR>', 'Projects' },
 })
 
 -- Buffers

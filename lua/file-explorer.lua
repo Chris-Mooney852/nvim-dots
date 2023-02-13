@@ -5,6 +5,8 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 -- vim.opt.termguicolors = true
 
+require('telescope').load_extension('projects')
+
 -- empty setup using defaults
 require("nvim-tree").setup({
   open_on_setup = false,
