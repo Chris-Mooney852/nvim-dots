@@ -13,6 +13,9 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-path'                              
   use 'hrsh7th/cmp-buffer'                            
   use 'Mofiqul/dracula.nvim'
+  use 'marko-cerovac/material.nvim'
+  use 'rmehri01/onenord.nvim'
+  use 'sainnhe/everforest'
   use "lukas-reineke/indent-blankline.nvim"
   use 'wakatime/vim-wakatime'
   use 'f-person/git-blame.nvim'
@@ -20,6 +23,9 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'kdheepak/lazygit.nvim'
   use "rafamadriz/friendly-snippets"
+  use 'rktjmp/lush.nvim'
+  use '~/Downloads/packages/fullstop'
+  use 'simrat39/symbols-outline.nvim'
   -- Lua
   use {
     "folke/which-key.nvim",
@@ -36,6 +42,12 @@ return require('packer').startup(function()
   use { 'L3MON4D3/LuaSnip' }
   use { 'hrsh7th/nvim-cmp' }
   use { 'saadparwaiz1/cmp_luasnip' }
+  use {
+    'NvChad/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end
+  }
   -- Lua
   use {
     "ahmedkhalf/project.nvim",

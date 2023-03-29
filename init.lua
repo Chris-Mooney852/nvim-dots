@@ -8,7 +8,9 @@ require('syntax-hilight')
 require('statline')
 require('lsp-settings')
 
-vim.cmd[[colorscheme dracula]]
+vim.o.termguicolors = true
+vim.cmd[[colorscheme everforest]]
+-- vim.cmd[[colorscheme material]]
 
 vim.o.expandtab = true
 vim.o.smartindent = true

@@ -45,7 +45,7 @@ require('lspconfig')['pyright'].setup{
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
-    on_attach = require('lsp-format').on_attach
+    on_attach = require('lsp-format').on_attach,
     -- cmd = { "typescript-language-server", "--stdio", "--noGetErrOnBackgroundUpdate" }
 }
 require('lspconfig')['rust_analyzer'].setup{

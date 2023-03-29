@@ -9,6 +9,4 @@ require('telescope').load_extension('projects')
 
 -- empty setup using defaults
 require("nvim-tree").setup({
-  open_on_setup = false,
-  ignore_buffer_on_setup = true,
 })

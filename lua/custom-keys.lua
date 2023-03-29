@@ -5,7 +5,7 @@ vim.g.maplocalleader = " "
 -- Telescope
 wk.register({
   ['<leader>f'] = { name = '+Telescope' },
-  ['<leader>ff'] = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+  ['<leader><space>'] = { '<cmd>Telescope find_files<CR>', 'Find Files' },
   ['<leader>fg'] = { '<cmd>Telescope live_grep<CR>', 'Grep' },
   ['<leader>fb'] = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', 'Find in Buffer' },
   ['<leader>fh'] = { '<cmd>Telescope help_tags<CR>', 'Help' },
@@ -45,6 +45,22 @@ vim.keymap.set('', 'T', function()
   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
 end, {remap=true})
 
+-- Window Navigation
+wk.register({
+  ['<leader>w'] = { name = '+Windows' },
+  ['<leader>wh'] = { '<cmd>wincmd h<CR>', 'Left' },
+  ['<leader>wn'] = { '<cmd>wincmd j<CR>', 'Down' },
+  ['<leader>we'] = { '<cmd>wincmd k<CR>', 'Up' },
+  ['<leader>wi'] = { '<cmd>wincmd l<CR>', 'Right' },
+  ['<leader>wc'] = { '<cmd>wincmd c<CR>', 'Close' },
+  ['<leader>w='] = { '<cmd>wincmd =<CR>', 'Equalize' },
+  ['<leader>w-'] = { '<cmd>wincmd -<CR>', 'Decrease' },
+  ['<leader>w+'] = { '<cmd>wincmd +<CR>', 'Increase' },
+  ['<leader>ws'] = { name = '+Split' },
+  ['<leader>wsv'] = { '<cmd>vsplit<CR>', 'Split Vertical' },
+  ['<leader>wsh'] = { '<cmd>split<CR>', 'Split Horizontal' },
+})
+
 -- Lazygit
 -- vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>', {})
 wk.register({
@@ -58,17 +74,12 @@ wk.register({
   ['<leader>rr'] = { '<Plug>RestNvim', 'Run' },
 })
 
-
 -- Misc
 wk.register({
-  ['<leader>w'] = { '<cmd>w<CR>', 'Save' },
+  ['<leader>fs'] = { '<cmd>w<CR>', 'Save' },
   ['<leader>q'] = { '<cmd>q<CR>', 'Quit' },
   ['<leader>Q'] = { '<cmd>qa<CR>', 'Quit All' },
   ['<leader>h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
   ['<leader>l'] = { '<cmd>set list!<CR>', 'Toggle List' },
-  ['<leader>o'] = { '<cmd>set list!<CR>', 'Toggle List' },
-  ['<leader>s'] = { name = "+Split" },
-  ['<leader>sv'] = { '<cmd>vsplit<CR>', 'Split Vertical' },
-  ['<leader>sh'] = { '<cmd>split<CR>', 'Split Horizontal' },
+  ['<leader>o'] = { '<cmd>set list!<CR>', 'Toggle List' }
 })
-
