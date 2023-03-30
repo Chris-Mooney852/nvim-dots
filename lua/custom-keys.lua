@@ -30,20 +30,20 @@ wk.register({
 })
 
 -- Navigation
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
-end, {remap=true})
-vim.keymap.set('', 'F', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
-end, {remap=true})
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, {remap=true})
-vim.keymap.set('', 'T', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, {remap=true})
+-- local hop = require('hop')
+-- local directions = require('hop.hint').HintDirection
+-- vim.keymap.set('', 'f', function()
+--   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
+-- end, {remap=true})
+-- vim.keymap.set('', 'F', function()
+--   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+-- end, {remap=true})
+-- vim.keymap.set('', 't', function()
+--   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+-- end, {remap=true})
+-- vim.keymap.set('', 'T', function()
+--   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+-- end, {remap=true})
 
 -- Window Navigation
 wk.register({
@@ -81,5 +81,6 @@ wk.register({
   ['<leader>Q'] = { '<cmd>qa<CR>', 'Quit All' },
   ['<leader>h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
   ['<leader>l'] = { '<cmd>set list!<CR>', 'Toggle List' },
-  ['<leader>o'] = { '<cmd>set list!<CR>', 'Toggle List' }
+  ['<leader>o'] = {  name = '+Open' },
+  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' }
 })

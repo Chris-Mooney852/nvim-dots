@@ -16,7 +16,6 @@ return require('packer').startup(function()
   use 'marko-cerovac/material.nvim'
   use 'rmehri01/onenord.nvim'
   use 'sainnhe/everforest'
-  use "lukas-reineke/indent-blankline.nvim"
   use 'wakatime/vim-wakatime'
   use 'f-person/git-blame.nvim'
   use 'lukas-reineke/lsp-format.nvim'
@@ -26,6 +25,7 @@ return require('packer').startup(function()
   use 'rktjmp/lush.nvim'
   use '~/Downloads/packages/fullstop'
   use 'simrat39/symbols-outline.nvim'
+  use 'echasnovski/mini.nvim'
   -- Lua
   use {
     "folke/which-key.nvim",
@@ -48,6 +48,22 @@ return require('packer').startup(function()
       require('colorizer').setup()
     end
   }
+  use({
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup({
+        -- add any options here
+      })
+    end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  })
   -- Lua
   use {
     "ahmedkhalf/project.nvim",
@@ -79,15 +95,6 @@ return require('packer').startup(function()
       })
     end
   }
-  use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  })
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     -- or                            , branch = '0.1.x',
@@ -119,24 +126,14 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require('hop').setup({})
-    end
-  }
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
+  -- use {
+  --   'phaazon/hop.nvim',
+  --   branch = 'v2', -- optional but strongly recommended
+  --   config = function()
+  --     -- you can configure Hop the way you like here; see :h hop-config
+  --     require('hop').setup({})
+  --   end
+  -- }
   use {
     'akinsho/git-conflict.nvim', 
     tag = "*", 
@@ -193,80 +190,80 @@ return require('packer').startup(function()
       })
     end
   }
-  use {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup {
-        theme = 'doom',
-        config = {
-          header = {
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '██████╗░██╗░██████╗░  ██████╗░░█████╗░██╗███╗░░██╗██╗░░██╗░██████╗',
-            '██╔══██╗██║██╔════╝░  ██╔══██╗██╔══██╗██║████╗░██║██║░██╔╝██╔════╝',
-            '██████╦╝██║██║░░██╗░  ██║░░██║██║░░██║██║██╔██╗██║█████═╝░╚█████╗░',
-            '██╔══██╗██║██║░░╚██╗  ██║░░██║██║░░██║██║██║╚████║██╔═██╗░░╚═══██╗',
-            '██████╦╝██║╚██████╔╝  ██████╔╝╚█████╔╝██║██║░╚███║██║░╚██╗██████╔╝',
-            '╚═════╝░╚═╝░╚═════╝░  ╚═════╝░░╚════╝░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            ''
-          }, --your header
-          center = {
-            {
-              icon = ' ',
-              desc = 'Find File           ',
-              key = 'f',
-              keymap = 'SPC f f',
-              action = 'Telescope find_files'
-            },
-            {
-              icon = ' ',
-              desc = 'Find Text           ',
-              key = 't',
-              keymap = 'SPC f g',
-              action = 'Telescope live_grep'
-            },
-            {
-              icon = ' ',
-              desc = 'Find Project           ',
-              key = 'p',
-              keymap = 'SPC f p',
-              action = 'Telescope projects'
-            },
-            {
-              icon = ' ',
-              desc = 'agenda           ',
-              key = 'a',
-              keymap = 'SPC o a',
-            },
-            {
-              icon = ' ',
-              desc = 'Quit           ',
-              key = 'q',
-              keymap = 'SPC q q',
-              action = 'q'
-            }
-          },
-          footer = {
-            '',
-            '',
-            '',
-            '',
-            '🌟 Don\'t let your memes be dreams 🌟'
-          }  --your footer
-        }
-      }
-    end,
-    requires = {'nvim-tree/nvim-web-devicons'}
-  }
+--   use {
+--     'glepnir/dashboard-nvim',
+--     event = 'VimEnter',
+--     config = function()
+--       require('dashboard').setup {
+--         theme = 'doom',
+--         config = {
+--           header = {
+--             '',
+--             '',
+--             '',
+--             '',
+--             '',
+--             '',
+--             '██████╗░██╗░██████╗░  ██████╗░░█████╗░██╗███╗░░██╗██╗░░██╗░██████╗',
+--             '██╔══██╗██║██╔════╝░  ██╔══██╗██╔══██╗██║████╗░██║██║░██╔╝██╔════╝',
+--             '██████╦╝██║██║░░██╗░  ██║░░██║██║░░██║██║██╔██╗██║█████═╝░╚█████╗░',
+--             '██╔══██╗██║██║░░╚██╗  ██║░░██║██║░░██║██║██║╚████║██╔═██╗░░╚═══██╗',
+--             '██████╦╝██║╚██████╔╝  ██████╔╝╚█████╔╝██║██║░╚███║██║░╚██╗██████╔╝',
+--             '╚═════╝░╚═╝░╚═════╝░  ╚═════╝░░╚════╝░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░',
+--             '',
+--             '',
+--             '',
+--             '',
+--             '',
+--             '',
+--             ''
+--           }, --your header
+--           center = {
+--             {
+--               icon = ' ',
+--               desc = 'Find File           ',
+--               key = 'f',
+--               keymap = 'SPC f f',
+--               action = 'Telescope find_files'
+--             },
+--             {
+--               icon = ' ',
+--               desc = 'Find Text           ',
+--               key = 't',
+--               keymap = 'SPC f g',
+--               action = 'Telescope live_grep'
+--             },
+--             {
+--               icon = ' ',
+--               desc = 'Find Project           ',
+--               key = 'p',
+--               keymap = 'SPC f p',
+--               action = 'Telescope projects'
+--             },
+--             {
+--               icon = ' ',
+--               desc = 'agenda           ',
+--               key = 'a',
+--               keymap = 'SPC o a',
+--             },
+--             {
+--               icon = ' ',
+--               desc = 'Quit           ',
+--               key = 'q',
+--               keymap = 'SPC q q',
+--               action = 'q'
+--             }
+--           },
+--           footer = {
+--             '',
+--             '',
+--             '',
+--             '',
+--             '🌟 Don\'t let your memes be dreams 🌟'
+--           }  --your footer
+--         }
+--       }
+--     end,
+--     requires = {'nvim-tree/nvim-web-devicons'}
+--   }
 end)

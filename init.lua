@@ -7,6 +7,7 @@ require('file-explorer')
 require('syntax-hilight')
 require('statline')
 require('lsp-settings')
+require('mini')
 
 vim.o.termguicolors = true
 vim.cmd[[colorscheme everforest]]
