@@ -21,30 +21,6 @@ wk.register({
   ['<leader>bp'] = { '<cmd>bprevious<CR>', 'Previous' },
 })
 
--- File Tree
-wk.register({
-  ['<leader>t'] = { name = '+Tree' },
-  ['<leader>tt'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle' },
-  ['<leader>tr'] = { '<cmd>NvimTreeRefresh<CR>', 'Refresh' },
-  ['<leader>tf'] = { '<cmd>NvimTreeFindFile<CR>', 'Find File' },
-})
-
--- Navigation
--- local hop = require('hop')
--- local directions = require('hop.hint').HintDirection
--- vim.keymap.set('', 'f', function()
---   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
--- end, {remap=true})
--- vim.keymap.set('', 'F', function()
---   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
--- end, {remap=true})
--- vim.keymap.set('', 't', function()
---   hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
--- end, {remap=true})
--- vim.keymap.set('', 'T', function()
---   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
--- end, {remap=true})
-
 -- Window Navigation
 wk.register({
   ['<leader>w'] = { name = '+Windows' },
@@ -66,6 +42,12 @@ wk.register({
 wk.register({
   ['<leader>g'] = { name = "+Git" },
   ['<leader>gg'] = { '<cmd>LazyGit<CR>', 'Lazygit' },
+  ['<leader>gn'] = { '<cmd>Gitsigns next_hunk<CR>', 'Next Hunk' },
+  ['<leader>gp'] = { '<cmd>Gitsigns prev_hunk<CR>', 'Previous Hunk' },
+  ['<leader>gs'] = { '<cmd>Gitsigns stage_hunk<CR>', 'Stage Hunk' },
+  ['<leader>gu'] = { '<cmd>Gitsigns undo_stage_hunk<CR>', 'Undo Stage Hunk' },
+  ['<leader>gr'] = { '<cmd>Gitsigns reset_hunk<CR>', 'Reset Hunk' },
+  ['<leader>gb'] = { '<cmd>Gitsigns blame_line<CR>', 'Blame Line' },
 })
 
 -- Rest
@@ -74,6 +56,15 @@ wk.register({
   ['<leader>rr'] = { '<Plug>RestNvim', 'Run' },
 })
 
+-- Open
+wk.register({
+  ['<leader>o'] = { name = '+Open' },
+  ['<leader>ot'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle' },
+  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' }
+})
+
+
+
 -- Misc
 wk.register({
   ['<leader>fs'] = { '<cmd>w<CR>', 'Save' },
@@ -81,6 +72,4 @@ wk.register({
   ['<leader>Q'] = { '<cmd>qa<CR>', 'Quit All' },
   ['<leader>h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
   ['<leader>l'] = { '<cmd>set list!<CR>', 'Toggle List' },
-  ['<leader>o'] = {  name = '+Open' },
-  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' }
 })
