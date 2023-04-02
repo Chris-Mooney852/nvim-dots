@@ -59,8 +59,11 @@ wk.register({
 -- Open
 wk.register({
   ['<leader>o'] = { name = '+Open' },
-  ['<leader>ot'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle' },
-  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' }
+  ['<leader>of'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle' },
+  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' },
+  ['<leader>ot'] = { name="Terminal" },
+  ['<leader>otf'] = { '<cmd>ToggleTerm direction=float<CR>', 'Floating' },
+  ['<leader>ott'] = { '<cmd>ToggleTerm<CR>', 'Term' },
 })
 
 

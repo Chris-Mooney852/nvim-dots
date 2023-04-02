@@ -27,6 +27,19 @@ return require('packer').startup(function()
   use 'simrat39/symbols-outline.nvim'
   use 'echasnovski/mini.nvim'
   use "elkowar/yuck.vim"
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end}
+  use({
+  "roobert/search-replace.nvim",
+  config = function()
+    require("search-replace").setup({
+      -- optionally override defaults
+      default_replace_single_buffer_options = "gcI",
+      default_replace_multi_buffer_options = "egcI",
+    })
+  end,
+})
   -- Lua
   use {
     "folke/which-key.nvim",
@@ -191,80 +204,4 @@ return require('packer').startup(function()
       })
     end
   }
---   use {
---     'glepnir/dashboard-nvim',
---     event = 'VimEnter',
---     config = function()
---       require('dashboard').setup {
---         theme = 'doom',
---         config = {
---           header = {
---             '',
---             '',
---             '',
---             '',
---             '',
---             '',
---             '██████╗░██╗░██████╗░  ██████╗░░█████╗░██╗███╗░░██╗██╗░░██╗░██████╗',
---             '██╔══██╗██║██╔════╝░  ██╔══██╗██╔══██╗██║████╗░██║██║░██╔╝██╔════╝',
---             '██████╦╝██║██║░░██╗░  ██║░░██║██║░░██║██║██╔██╗██║█████═╝░╚█████╗░',
---             '██╔══██╗██║██║░░╚██╗  ██║░░██║██║░░██║██║██║╚████║██╔═██╗░░╚═══██╗',
---             '██████╦╝██║╚██████╔╝  ██████╔╝╚█████╔╝██║██║░╚███║██║░╚██╗██████╔╝',
---             '╚═════╝░╚═╝░╚═════╝░  ╚═════╝░░╚════╝░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝╚═════╝░',
---             '',
---             '',
---             '',
---             '',
---             '',
---             '',
---             ''
---           }, --your header
---           center = {
---             {
---               icon = ' ',
---               desc = 'Find File           ',
---               key = 'f',
---               keymap = 'SPC f f',
---               action = 'Telescope find_files'
---             },
---             {
---               icon = ' ',
---               desc = 'Find Text           ',
---               key = 't',
---               keymap = 'SPC f g',
---               action = 'Telescope live_grep'
---             },
---             {
---               icon = ' ',
---               desc = 'Find Project           ',
---               key = 'p',
---               keymap = 'SPC f p',
---               action = 'Telescope projects'
---             },
---             {
---               icon = ' ',
---               desc = 'agenda           ',
---               key = 'a',
---               keymap = 'SPC o a',
---             },
---             {
---               icon = ' ',
---               desc = 'Quit           ',
---               key = 'q',
---               keymap = 'SPC q q',
---               action = 'q'
---             }
---           },
---           footer = {
---             '',
---             '',
---             '',
---             '',
---             '🌟 Don\'t let your memes be dreams 🌟'
---           }  --your footer
---         }
---       }
---     end,
---     requires = {'nvim-tree/nvim-web-devicons'}
---   }
 end)
