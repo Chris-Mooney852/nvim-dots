@@ -26,6 +26,7 @@ return require('packer').startup(function()
   use '~/Downloads/packages/fullstop'
   use 'simrat39/symbols-outline.nvim'
   use 'echasnovski/mini.nvim'
+  use "elkowar/yuck.vim"
   -- Lua
   use {
     "folke/which-key.nvim",
