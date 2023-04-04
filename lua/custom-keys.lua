@@ -50,12 +50,6 @@ wk.register({
   ['<leader>gb'] = { '<cmd>Gitsigns blame_line<CR>', 'Blame Line' },
 })
 
--- Rest
-wk.register({
-  ['<leader>r'] = { name = '+Rest' },
-  ['<leader>rr'] = { '<Plug>RestNvim', 'Run' },
-})
-
 -- Open
 wk.register({
   ['<leader>o'] = { name = '+Open' },
@@ -63,10 +57,20 @@ wk.register({
   ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' },
   ['<leader>ot'] = { name="Terminal" },
   ['<leader>otf'] = { '<cmd>ToggleTerm direction=float<CR>', 'Floating' },
-  ['<leader>ott'] = { '<cmd>ToggleTerm<CR>', 'Term' },
+  ['<leader>ott'] = { '<cmd>ToggleTerm direction=horizontal<CR>', 'Term' },
 })
 
+-- Terminal key rebinds
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
 
+-- Search and Replace
+wk.register({
+  ['<leader>r'] = { name = "+Replace" },
+  ['<leader>rs'] = { "<CMD>SearchReplaceSingleBufferSelections<CR>", "Selection List" },
+  ['<leader>ro'] = { "<CMD>SearchReplaceSingleBufferOpen<CR>", "Open" },
+  ['<leader>rw'] = { "<CMD>SearchReplaceSingleBufferCWord<CR>", "Word" },
+})
+vim.o.inccommand = "split"
 
 -- Misc
 wk.register({

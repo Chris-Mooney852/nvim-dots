@@ -8,11 +8,8 @@ require('mini.splitjoin').setup()
 require('mini.starter').setup()
 require('mini.surround').setup()
 require('mini.tabline').setup()
+require('mini.sessions').setup()
 
-require('mini.sessions').setup({
-  autowrite = true, -- save on session save
-  directory = '~/.sessions'
-})
 require('mini.move').setup({
   mappings = {
     up = '<M-Up>',
@@ -21,4 +18,8 @@ require('mini.move').setup({
     left = '<M-Left>',
   }
 })
-
+require("mini.animate").setup({
+  scroll = {
+    enable = false
+  }
+})

@@ -27,19 +27,29 @@ return require('packer').startup(function()
   use 'simrat39/symbols-outline.nvim'
   use 'echasnovski/mini.nvim'
   use "elkowar/yuck.vim"
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end}
   use({
-  "roobert/search-replace.nvim",
-  config = function()
-    require("search-replace").setup({
-      -- optionally override defaults
-      default_replace_single_buffer_options = "gcI",
-      default_replace_multi_buffer_options = "egcI",
-    })
-  end,
-})
+    "roobert/search-replace.nvim",
+    config = function()
+      require("search-replace").setup({
+        -- optionally override defaults
+        default_replace_single_buffer_options = "gcI",
+        default_replace_multi_buffer_options = "egcI",
+      })
+    end,
+  })
+  -- Lua
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+      }
+    end
+  }
   -- Lua
   use {
     "folke/which-key.nvim",
@@ -141,67 +151,27 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   -- use {
-  --   'phaazon/hop.nvim',
-  --   branch = 'v2', -- optional but strongly recommended
-  --   config = function()
-  --     -- you can configure Hop the way you like here; see :h hop-config
-  --     require('hop').setup({})
-  --   end
-  -- }
-  use {
-    'akinsho/git-conflict.nvim', 
-    tag = "*", 
-    config = function()
-      require('git-conflict').setup()
-    end
-  }
-  use {
-    'nvim-orgmode/orgmode',
-    config = function()
-      require('orgmode').setup{
-        org_agenda_files = {'~/org/**/*'},
-        org_default_notes_file = '~/org/refile.org',
+    --   'phaazon/hop.nvim',
+    --   branch = 'v2', -- optional but strongly recommended
+    --   config = function()
+      --     -- you can configure Hop the way you like here; see :h hop-config
+      --     require('hop').setup({})
+      --   end
+      -- }
+      use {
+        'akinsho/git-conflict.nvim', 
+        tag = "*", 
+        config = function()
+          require('git-conflict').setup()
+        end
       }
-    end
-  }
-  use {
-    "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("rest-nvim").setup({
-        -- Open request results in a horizontal split
-        result_split_horizontal = false,
-        -- Keep the http file buffer above|left when split horizontal|vertical
-        result_split_in_place = false,
-        -- Skip SSL verification, useful for unknown certificates
-        skip_ssl_verification = false,
-        -- Encode URL before making request
-        encode_url = true,
-        -- Highlight request on run
-        highlight = {
-          enabled = true,
-          timeout = 150,
-        },
-        result = {
-          -- toggle showing URL, HTTP info, headers at top the of result window
-          show_url = true,
-          show_http_info = true,
-          show_headers = true,
-          -- executables or functions for formatting response body [optional]
-          -- set them to false if you want to disable them
-          formatters = {
-            json = "jq",
-            html = function(body)
-              return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
-            end
-          },
-        },
-        -- Jump to request line on run
-        jump_to_request = false,
-        env_file = '.env',
-        custom_dynamic_variables = {},
-        yank_dry_run = true,
-      })
-    end
-  }
-end)
+      use {
+        'nvim-orgmode/orgmode',
+        config = function()
+          require('orgmode').setup{
+            org_agenda_files = {'~/org/**/*'},
+            org_default_notes_file = '~/org/refile.org',
+          }
+        end
+      }
+    end)
