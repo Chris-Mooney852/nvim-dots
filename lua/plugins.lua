@@ -24,7 +24,6 @@ return require('packer').startup(function()
   use "rafamadriz/friendly-snippets"
   use 'rktjmp/lush.nvim'
   use '~/Downloads/packages/fullstop'
-  use 'simrat39/symbols-outline.nvim'
   use 'echasnovski/mini.nvim'
   use "elkowar/yuck.vim"
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
@@ -150,28 +149,24 @@ return require('packer').startup(function()
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  -- use {
-    --   'phaazon/hop.nvim',
-    --   branch = 'v2', -- optional but strongly recommended
-    --   config = function()
-      --     -- you can configure Hop the way you like here; see :h hop-config
-      --     require('hop').setup({})
-      --   end
-      -- }
-      use {
-        'akinsho/git-conflict.nvim', 
-        tag = "*", 
-        config = function()
-          require('git-conflict').setup()
-        end
+  use {
+    'akinsho/git-conflict.nvim', 
+    tag = "*", 
+    config = function()
+      require('git-conflict').setup()
+    end
+  }
+  use {
+    'nvim-orgmode/orgmode',
+    config = function()
+      require('orgmode').setup{
+        org_agenda_files = {'~/org/**/*'},
+        org_default_notes_file = '~/org/refile.org',
       }
-      use {
-        'nvim-orgmode/orgmode',
-        config = function()
-          require('orgmode').setup{
-            org_agenda_files = {'~/org/**/*'},
-            org_default_notes_file = '~/org/refile.org',
-          }
-        end
-      }
-    end)
+    end
+  }
+  use {
+    'stevearc/aerial.nvim',
+    config = function() require('aerial').setup() end
+  }
+end)

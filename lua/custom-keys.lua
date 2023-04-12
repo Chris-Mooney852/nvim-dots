@@ -10,7 +10,17 @@ wk.register({
   ['<leader>fb'] = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', 'Find in Buffer' },
   ['<leader>fh'] = { '<cmd>Telescope help_tags<CR>', 'Help' },
   ['<leader>fp'] = { '<cmd>Telescope projects<CR>', 'Projects' },
+  ['<leader>fa'] = { '<cmd>Telescope aerial<CR>', 'Aerial' },
 })
+
+-- rebind / to telescope buffer search
+vim.keymap.set('n', '/', '<cmd>Telescope current_buffer_fuzzy_find<CR>', {})
+
+-- format code
+wk.register({
+  ['<leader>ff'] = { function() vim.lsp.buf.format { async = true } end , 'Format' },
+})
+
 
 -- Buffers
 wk.register({
@@ -20,6 +30,14 @@ wk.register({
   ['<leader>bn'] = { '<cmd>bnext<CR>', 'Next' },
   ['<leader>bp'] = { '<cmd>bprevious<CR>', 'Previous' },
 })
+
+-- Clipboard
+wk.register({
+  ['<leader>y'] = { name='+Clipboard' },
+  ['<leader>yy'] = { '"+y', 'Copy' },
+  ['<leader>yp'] = { '"+p', 'Paste' },
+})
+
 
 -- Window Navigation
 wk.register({
@@ -54,7 +72,7 @@ wk.register({
 wk.register({
   ['<leader>o'] = { name = '+Open' },
   ['<leader>of'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle' },
-  ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' },
+  -- ['<leader>os'] = { '<cmd>SymbolsOutline<CR>', 'SymbolsOutline' },
   ['<leader>ot'] = { name="Terminal" },
   ['<leader>otf'] = { '<cmd>ToggleTerm direction=float<CR>', 'Floating' },
   ['<leader>ott'] = { '<cmd>ToggleTerm direction=horizontal<CR>', 'Term' },

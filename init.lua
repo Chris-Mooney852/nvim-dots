@@ -9,6 +9,8 @@ require('statline')
 require('lsp-settings')
 require('mini')
 require('ufo-settings')
+ 
+require('telescope').load_extension('aerial')
 
 vim.o.termguicolors = true
 vim.cmd[[colorscheme everforest]]
