@@ -13,8 +13,7 @@ require('ufo-settings')
 require('telescope').load_extension('aerial')
 
 vim.o.termguicolors = true
-vim.cmd[[colorscheme everforest]]
--- vim.cmd[[colorscheme material]]
+vim.cmd[[colorscheme dracula]]
 
 vim.o.expandtab = true
 vim.o.smartindent = true
